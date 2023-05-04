@@ -1,3 +1,5 @@
+// Gradle properties.
+// https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_configuration_properties
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
@@ -9,9 +11,17 @@ val postgresql_version: String by project
  * Configures the plugin dependencies for this project.
  */
 plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    application
+    // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
+    // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.jvm
     kotlin("jvm") version "1.8.21"
+    // Provides the ability to package and containerize your Ktor application.
+    // https://plugins.gradle.org/plugin/io.ktor.plugin
     id("io.ktor.plugin") version "2.3.0"
-    id("org.flywaydb.flyway") version "8.5.4"
+    // Flyway is an open-source database migration tool.
+    // https://plugins.gradle.org/plugin/org.flywaydb.flyway
+    id("org.flywaydb.flyway") version "9.17.0"
 }
 
 group = "big"
@@ -25,6 +35,7 @@ application {
     mainClass.set("big.ApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
+    // Set Array of string arguments to pass to the JVM when running the application.
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 /**
@@ -33,7 +44,9 @@ application {
  * Executes the given configuration block against the RepositoryHandler for this project.
  */
 repositories {
+    // Use Maven Central for resolving dependencies.
     mavenCentral()
+    // Use Early Access Program (EAP) for resolving dependencies.
     maven {
         url = uri("https://maven.pkg.jetbrains.space/public/p/ktor/eap")
     }
@@ -60,10 +73,10 @@ dependencies {
     implementation("org.postgresql:postgresql:$postgresql_version")
 
     // database pooling
-    implementation("com.zaxxer:HikariCP:2.7.8")
+    implementation("com.zaxxer:HikariCP:5.0.1")
 
     // database migration
-    implementation("org.flywaydb:flyway-core:6.5.2")
+    implementation("org.flywaydb:flyway-core:9.17.0")
 
     // password hashing
     implementation("org.mindrot:jbcrypt:0.4")
