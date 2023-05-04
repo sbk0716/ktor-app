@@ -12,6 +12,7 @@ val postgresql_version: String by project
  */
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
+    // https://docs.gradle.org/current/userguide/application_plugin.html
     application
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.jvm
@@ -35,7 +36,7 @@ application {
     mainClass.set("big.ApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
-    // Set Array of string arguments to pass to the JVM when running the application.
+    // Set array of string arguments to pass to the JVM when running the application.
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 /**
@@ -87,6 +88,9 @@ dependencies {
 }
 
 flyway {
+    createSchemas = true
+    defaultSchema = "private"
+    schemas = listOf("private", "tutorial").toTypedArray()
     url = System.getenv("DB_URL")
     user = System.getenv("DB_USER")
     password = System.getenv("DB_PASSWORD")
