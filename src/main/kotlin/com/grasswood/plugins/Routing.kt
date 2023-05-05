@@ -12,7 +12,7 @@ import com.grasswood.route.userRoute
  * declare an extension function named `configureRouting`.
  */
 fun Application.configureRouting() {
-    // Installs a Routing plugin for the this Application and runs a configuration script on it.
+    // Installs a Routing plugin for this Application and runs a configuration script on it.
     routing {
         healthRoute()
         authRoute()

@@ -25,7 +25,7 @@ fun Application.mainModule() {
     // Executes extension function named `configureSecurity`.
     configureSecurity()
     // Executes DatabaseFactory.init function.
-  DatabaseFactory.init()
+    DatabaseFactory.init()
     // Executes extension function named `configureRouting`.
     configureRouting()
 }

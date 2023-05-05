@@ -11,14 +11,14 @@ import io.ktor.server.plugins.cors.routing.CORS
  * declare an extension function named `configureCORS`.
  */
 fun Application.configureCORS() {
-  // `ktor-server-cors` that allows you to configure handling cross-origin requests.
-  // FYI: https://ktor.io/docs/cors.html
-  install(CORS) {
-    allowMethod(HttpMethod.Options)
-    allowMethod(HttpMethod.Put)
-    allowMethod(HttpMethod.Patch)
-    allowMethod(HttpMethod.Delete)
-    allowHeader(HttpHeaders.Authorization)
-    allowHeader(HttpHeaders.ContentType)
-  }
+    // `ktor-server-cors` that allows you to configure handling cross-origin requests.
+    // FYI: https://ktor.io/docs/cors.html
+    install(CORS) {
+        allowMethod(HttpMethod.Options)
+        allowMethod(HttpMethod.Put)
+        allowMethod(HttpMethod.Patch)
+        allowMethod(HttpMethod.Delete)
+        allowHeader(HttpHeaders.Authorization)
+        allowHeader(HttpHeaders.ContentType)
+    }
 }
