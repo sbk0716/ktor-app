@@ -15,6 +15,8 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
  */
 @Suppress("unused") // application.conf references the main function. This annotation prevents the IDE from marking it as unused.
 fun Application.mainModule() {
+    // Executes extension function named `configureCORS`.
+    configureCORS()
     // Executes extension function named `configureSerialization`.
     configureSerialization()
     // Executes extension function named `configureSecurity`.
