@@ -22,6 +22,9 @@ fun Application.configureRouting() {
         get("/") {
             call.respondText("Hello World!")
         }
+        get("/health") {
+            call.respondText("OK!")
+        }
         post("/register") {
             val credentials = call.receive<LoginRegister>()
             println(credentials)
@@ -45,6 +48,7 @@ fun Application.configureRouting() {
             call.respond(hashMapOf("token" to token))
         }
 
+        // Creates a route that allows you to define authorization scope for application resources.
         authenticate {
             get("/profiles") {
                 // Execute profileService.getAllUsers function.
