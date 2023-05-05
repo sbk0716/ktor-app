@@ -1,12 +1,16 @@
 <configuration>
+    <!-- Declares an appender of STDOUT. -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
+    <!-- Defines the appender(name="STDOUT") used by the root logger. -->
     <root level="trace">
         <appender-ref ref="STDOUT"/>
     </root>
+    <!-- Set INFO level for `org.eclipse.jetty` loggers. -->
     <logger name="org.eclipse.jetty" level="INFO"/>
+    <!-- Set INFO level for `io.netty` loggers. -->
     <logger name="io.netty" level="INFO"/>
 </configuration>
