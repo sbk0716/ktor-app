@@ -15,7 +15,7 @@ fun Application.configureSecurity() {
     // FYI: https://ktor.io/docs/jwt.html
     authentication {
         // Installs the JWT Authentication provider.
-        jwt(name = "auth-jwt") {
+        jwt {
             // Specifies a JWT realm to be passed in WWW-Authenticate header.
             realm = JWT.jwtRealm
             // Provides a JWTVerifier used to verify a token format and signature.

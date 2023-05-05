@@ -45,7 +45,6 @@ fun Application.configureRouting() {
             call.respond(hashMapOf("token" to token))
         }
 
-
         authenticate {
             get("/profiles") {
                 // Execute profileService.getAllUsers function.
