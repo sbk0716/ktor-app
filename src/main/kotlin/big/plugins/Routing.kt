@@ -35,6 +35,7 @@ fun Application.configureRouting() {
         }
         post("/login") {
             val credentials = call.receive<LoginRegister>()
+            // Execute profileService.getProfileByEmail function.
             val profile = profileService.getProfileByEmail(credentials.email)
             if (profile == null || !BCrypt.checkpw(credentials.password, profile.password)) {
                 error("Invalid Credentials")

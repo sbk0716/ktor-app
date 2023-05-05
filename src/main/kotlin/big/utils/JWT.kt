@@ -27,8 +27,11 @@ object JWT {
     }
 
     val jwtVerifier: JWTVerifier = JWT
+        // Returns a Verification builder with the algorithm to be used to validate token signature.
         .require(Algorithm.HMAC256(jwtSecret))
+        // Verifies whether the JWT contains an Audience ("aud") claim that contains all the values provided.
         .withAudience(jwtAudience)
+        // Verifies whether the JWT contains an Issuer ("iss") claim that equals to the value provided.
         .withIssuer(jwtIssuer)
         .build()
 }
