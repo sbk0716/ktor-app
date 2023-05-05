@@ -1,7 +1,7 @@
 package big.service
 
 import big.models.Profile
-import my_kotlin_app.DatabaseFactory.dbQuery
+import big.DatabaseFactory.dbQuery
 import big.models.ProfileType
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.insert
