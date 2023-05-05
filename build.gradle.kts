@@ -1,10 +1,10 @@
 // Gradle properties.
-// https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_configuration_properties
-val ktor_version: String by project
-val kotlin_version: String by project
-val logback_version: String by project
-val exposed_version: String by project
-val postgresql_version: String by project
+// FYI: https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_configuration_properties
+val ktorVersion: String by project
+val kotlinVersion: String by project
+val logbackVersion: String by project
+val exposedVersion: String by project
+val postgresqlVersion: String by project
 
 /**
  * public final fun plugins(block: PluginDependenciesSpecScope.() -> Unit): Unit
@@ -12,16 +12,16 @@ val postgresql_version: String by project
  */
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    // https://docs.gradle.org/current/userguide/application_plugin.html
+    // FYI: https://docs.gradle.org/current/userguide/application_plugin.html
     application
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
-    // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.jvm
+    // FYI: https://plugins.gradle.org/plugin/org.jetbrains.kotlin.jvm
     kotlin("jvm") version "1.8.21"
     // Provides the ability to package and containerize your Ktor application.
-    // https://plugins.gradle.org/plugin/io.ktor.plugin
+    // FYI: https://plugins.gradle.org/plugin/io.ktor.plugin
     id("io.ktor.plugin") version "2.3.0"
     // Flyway is an open-source database migration tool.
-    // https://plugins.gradle.org/plugin/org.flywaydb.flyway
+    // FYI: https://plugins.gradle.org/plugin/org.flywaydb.flyway
     id("org.flywaydb.flyway") version "9.17.0"
 }
 
@@ -59,19 +59,19 @@ repositories {
  * Executes the given configuration block against the DependencyHandlerScope for this project.
  */
 dependencies {
-    implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
-    implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
-    implementation("ch.qos.logback:logback-classic:$logback_version")
-    implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktor_version")
-    implementation("io.ktor:ktor-serialization-jackson-jvm:$ktor_version")
-    implementation("io.ktor:ktor-server-auth-jvm:$ktor_version")
-    implementation("io.ktor:ktor-server-auth-jwt-jvm:$ktor_version")
-    implementation("io.ktor:ktor-server-auth-jvm:$ktor_version")
+    implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-netty-jvm:$ktorVersion")
+    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-jackson-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-auth-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-auth-jwt-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-auth-jvm:$ktorVersion")
 
     // connect to database
-    implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
-    implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
-    implementation("org.postgresql:postgresql:$postgresql_version")
+    implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
+    implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
+    implementation("org.postgresql:postgresql:$postgresqlVersion")
 
     // database pooling
     implementation("com.zaxxer:HikariCP:5.0.1")
@@ -82,17 +82,45 @@ dependencies {
     // password hashing
     implementation("org.mindrot:jbcrypt:0.4")
 
-    testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
-
+    testImplementation("io.ktor:ktor-server-tests-jvm:$ktorVersion")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
 }
 
+/**
+ * public fun Project.flyway(configure: Action<FlywayExtension>): Unit
+ * Configures the flyway extension.
+ * FYI: https://documentation.red-gate.com/fd/parameters-184127474.html
+ */
 flyway {
-    createSchemas = true
-    defaultSchema = "private"
-    schemas = listOf("private", "tutorial").toTypedArray()
-    url = System.getenv("DB_URL")
-    user = System.getenv("DB_USER")
-    password = System.getenv("DB_PASSWORD")
+    // ==============================
+    // Parameters > Baseline
+    // ==============================
+    // Whether to automatically call baseline when migrate is executed against a non-empty schema with no metadata table.
     baselineOnMigrate = true
+
+    // ==============================
+    // Parameters > Clean
+    // ==============================
+    // Whether to disable clean.
+    cleanDisabled = false
+
+    // ==============================
+    // Parameters > Schema
+    // ==============================
+    // Whether Flyway should attempt to create the schemas specified in the schemas property.
+    createSchemas = true
+    // The default schema managed by Flyway. This schema will be the one containing the schema history table.
+    defaultSchema = "private"
+    // Comma-separated, case-sensitive list of schemas managed by Flyway. Flyway will attempt to create these schemas if they do not already exist, and will clean them in the order of this list.
+    schemas = listOf("private", "tutorial").toTypedArray()
+
+    // ==============================
+    // Parameters > Connection
+    // ==============================
+    // The jdbc url to use to connect to the database.
+    url = System.getenv("DB_URL")
+    // The user to use to connect to the database.
+    user = System.getenv("DB_USER")
+    // The password to use to connect to the database
+    password = System.getenv("DB_PASSWORD")
 }
