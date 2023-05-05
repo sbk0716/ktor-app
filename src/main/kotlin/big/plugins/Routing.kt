@@ -49,7 +49,7 @@ fun Application.configureRouting() {
         }
 
         // Creates a route that allows you to define authorization scope for application resources.
-        authenticate {
+        authenticate("auth-jwt") {
             get("/profiles") {
                 // Execute profileService.getAllUsers function.
                 val users = profileService.getAllUsers()
