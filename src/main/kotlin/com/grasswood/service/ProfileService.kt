@@ -1,12 +1,12 @@
-package big.service
+package com.grasswood.service
 
-import big.models.Profile
-import big.DatabaseFactory.dbQuery
-import big.models.ProfileType
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
+import com.grasswood.models.Profile
+import com.grasswood.DatabaseFactory.dbQuery
+import com.grasswood.models.ProfileType
 
 
 class ProfileService {

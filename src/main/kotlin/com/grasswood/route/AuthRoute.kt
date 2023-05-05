@@ -1,12 +1,12 @@
-package big.route
+package com.grasswood.route
 
-import big.utils.JWT
 import io.ktor.server.routing.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
-import big.service.ProfileService
 import org.mindrot.jbcrypt.BCrypt
+import com.grasswood.utils.JWT
+import com.grasswood.service.ProfileService
 
 // Declares a LoginRegister data class.
 data class LoginRegister(val email: String, val password: String)

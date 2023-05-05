@@ -1,9 +1,9 @@
-package big.plugins
+package com.grasswood.plugins
 
-import big.utils.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
 import io.ktor.server.application.*
+import com.grasswood.utils.JWT
 
 
 /**

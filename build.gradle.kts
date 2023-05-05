@@ -25,7 +25,7 @@ plugins {
     id("org.flywaydb.flyway") version "9.17.0"
 }
 
-group = "big"
+group = "com.grasswood"
 version = "0.0.1"
 
 /**
@@ -33,7 +33,7 @@ version = "0.0.1"
  * Configures the application extension.
  */
 application {
-    mainClass.set("big.ApplicationKt")
+    mainClass.set("com.grasswood.ApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
     // Set array of string arguments to pass to the JVM when running the application.

@@ -1,4 +1,4 @@
-package big.plugins
+package com.grasswood.plugins
 
 import io.ktor.serialization.jackson.*
 import com.fasterxml.jackson.databind.*

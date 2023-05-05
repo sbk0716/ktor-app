@@ -1,4 +1,4 @@
-package big
+package com.grasswood
 
 import com.typesafe.config.ConfigFactory
 import com.zaxxer.hikari.HikariConfig

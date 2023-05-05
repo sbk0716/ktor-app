@@ -1,7 +1,10 @@
-package big
+package com.grasswood
 
 import io.ktor.server.application.*
-import big.plugins.*
+import com.grasswood.plugins.configureCORS
+import com.grasswood.plugins.configureRouting
+import com.grasswood.plugins.configureSecurity
+import com.grasswood.plugins.configureSerialization
 
 /**
  * Declares main function.
@@ -22,7 +25,7 @@ fun Application.mainModule() {
     // Executes extension function named `configureSecurity`.
     configureSecurity()
     // Executes DatabaseFactory.init function.
-    DatabaseFactory.init()
+  DatabaseFactory.init()
     // Executes extension function named `configureRouting`.
     configureRouting()
 }

@@ -1,17 +1,14 @@
-CREATE DATABASE app_db;
---
----- DB作成
---CREATE DATABASE app_db;
----- 作成したDBに接続
---\c app_db;
----- テーブル作成
---DROP TABLE IF EXISTS sample;
---CREATE TABLE sample (
---	id integer NOT NULL PRIMARY KEY,
---	name char(100) NOT NULL,
---	created_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
---);
----- ID用シーケンス作成
---CREATE SEQUENCE sample_id_seq START 1;
----- サンブルデータの登録
---INSERT INTO sample (id, name) VALUES(nextval('sample_id_seq'), 'sample name');
+-- DB作成
+CREATE DATABASE test_db;
+
+-- 作成したDBへ切り替え
+\c test_db
+
+-- スキーマ作成
+CREATE SCHEMA private;
+
+-- ロールの作成
+CREATE ROLE admin WITH LOGIN PASSWORD 'P@ssw0rd';
+
+-- 権限追加
+GRANT ALL PRIVILEGES ON SCHEMA private TO admin;

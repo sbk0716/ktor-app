@@ -1,10 +1,10 @@
-package big.plugins
+package com.grasswood.plugins
 
-import big.route.healthRoute
-import big.route.authRoute
-import big.route.userRoute
 import io.ktor.server.routing.*
 import io.ktor.server.application.*
+import com.grasswood.route.healthRoute
+import com.grasswood.route.authRoute
+import com.grasswood.route.userRoute
 
 
 /**
